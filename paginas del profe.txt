@@ -1,0 +1,10 @@
+https://github.com/typicode/json-server
+
+https://github.com/typicode/json-server#filter
+http://localhost:3001/productos?nombre=Cheetos
+http://localhost:3001/productos?nombre_like=che
+
+https://github.com/typicode/json-server#filter
+http://localhost:3001/productos?nombre=Cheetos
+http://localhost:3001/productos?nombre_like=che
+http://localhost:3001/productos?q=jpg

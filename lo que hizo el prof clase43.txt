@@ -1,0 +1,241 @@
+1. Levantar el json-server
+2. Levantar el proyecto en react
+3. Modificar el metodo agregarProducto del Componente ProductoDetalle para que no duplique productos.
+
+agregarProducto(){
+		let idprod = this.props.match.params.id;
+		let producto = {
+			id: idprod,
+			nombre: this.state.nombre,
+			precio: this.state.precio,
+			cantidad: parseInt(this.state.cantidad)
+		}
+		let newCarrito = this.context.carrito;
+		let encontrado = false;
+		for(let item of newCarrito){ // Recorro los items del carrito
+			if(item.id==idprod){ // Si encuentro el producto en el carrito
+				item.cantidad += producto.cantidad; //sumo la cantidad que compro a la existente
+				encontrado = true;
+				break;
+			}
+		}
+		if(!encontrado) //si no se encontró el producto en el carrito
+			newCarrito.push(producto); //Agrego el producto
+		console.log(newCarrito);
+		this.context.setCarrito(newCarrito);
+		window.alert("Producto agregado!");
+	}
+  
+4. Modificar agregarProducto para ingresar el carrito al localStorage. Antes del window.alert ingresar:
+
+localStorage.setItem("carrito",JSON.stringify(newCarrito));
+
+5. Agregamos el metodo componentDidMount para que verifique si existe el carrito en el localStorage y lo pase al state
+
+componentDidMount(){
+    console.log("componentDidMount App");
+    if(localStorage.carrito){
+      console.log("localStorage.carrito");
+      this.setState({
+        carrito: JSON.parse(localStorage.carrito)
+      });
+    }
+  }
+  
+
+6. Implementamos el componente Buscar. Creamos el archivo buscar.js
+
+import React, { Component } from 'react';
+class Buscar extends Component {
+	render(){
+		return(
+			<h1>Resultado de la búsqueda</h1>
+		);
+	}
+}
+export default Buscar;
+
+7. Importamos en App.js el componente Buscar y Ruteamos el componente Buscar.
+
+import React, { Component } from 'react';
+import { Route, Switch } from 'react-router-dom';
+import { AppProvider } from './helpers/appcontext';
+import Cabecera from './components/cabecera';
+import Pie from './components/pie';
+import Principal from './components/principal';
+import ProductoDetalle from './components/producto_detalle';
+import Login from './components/login';
+import Carrito from './components/carrito';
+import Buscar from './components/buscar';
+import NoEncontrado from './components/noencontrado';
+import './App.css';
+
+class App extends Component {
+  setCarrito = (carrito)=>{
+    this.setState({ carrito });
+  };
+  state = {
+    carrito: [
+      {id:88,nombre:"demo",precio:3,cantidad:9}
+    ],
+    setCarrito: this.setCarrito
+  };
+  componentDidMount(){
+    console.log("componentDidMount App");
+    if(localStorage.carrito){
+      console.log("localStorage.carrito");
+      this.setState({
+        carrito: JSON.parse(localStorage.carrito)
+      });
+    }
+  }
+  render(){
+    return(
+      <AppProvider value={this.state}>
+        <header>
+          <Cabecera></Cabecera>
+        </header>
+        <main>
+          <Switch>
+            <Route exact path='/' component={ Principal } />
+            <Route exact path='/producto/detalle/:id' component={ ProductoDetalle } />
+            <Route exact path='/login' component={ Login } />
+            <Route exact path='/carrito' component={ Carrito } />
+            <Route exact path='/buscar/:busqueda' component={ Buscar } />
+            <Route component={ NoEncontrado } />
+          </Switch>
+        </main>
+        <footer>
+          <Pie></Pie>
+        </footer>
+      </AppProvider>
+    );
+  }
+}
+
+export default App;
+
+8. Para realizar la búsqueda, modificamos el componente Cabecera de la siguiente manera:
+
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AppContext from '../helpers/appcontext';
+
+class Cabecera extends Component {
+	static contextType = AppContext;
+	state = {
+		busqueda: ""
+	}
+	setBusqueda(e){
+		this.setState({
+			busqueda: e.target.value
+		});
+	}
+	buscar(){
+		let busqueda = this.state.busqueda;
+		let ruta = "/buscar/"+busqueda;
+		window.location.hash = ruta;
+	}
+	render(){
+		return(
+			<div id="cabecera">
+				<div className="logo"><Link to="/">CodiGoStore</Link></div>
+				<div className="buscador">
+					<input type="text" onChange={this.setBusqueda.bind(this)} placeholder="Busca un producto" />
+					<button onClick={this.buscar.bind(this)}>Buscar</button>
+				</div>
+				<div className="enlaces">
+					<Link to="/login">Iniciar Sesión</Link> 
+					<Link to="/carrito">Carrito ({this.context.carrito.length})</Link>
+				</div>
+			</div>
+		);
+	}
+}
+export default Cabecera;
+  
+9. Modificamos el Componente Buscar para obtener el dato de busquea y ejectuar la ruta de busqueda:
+
+import React, { Component } from 'react';
+import Producto from './producto';
+class Buscar extends Component {
+	state = {
+		lista : []
+	}
+	componentDidMount(){
+		console.log("componentDidMount Buscar");
+		this.listar();
+	}
+	componentDidUpdate() {
+		//console.log("componentDidUpdate Buscar");
+		this.listar();
+	}
+	listar(){
+		let buscar = this.props.match.params.busqueda;
+		let ruta = "http://localhost:3001/productos?nombre_like="+buscar;
+		fetch(ruta).then(response=>response.json())
+		.then(datos=>{
+			this.setState({
+				lista : datos
+			});
+			//console.log("datos",datos);
+		});
+	}
+	render(){
+		return(
+			<div id="principal">
+				<h1>Resultado de la búsqueda para {this.props.match.params.busqueda}</h1>
+				<div className="lista">
+				{this.state.lista.map(prod=>{
+					return(<Producto key={prod.id} dato={prod} />);
+				})}
+				</div>
+			</div>
+		);
+	}
+}
+export default Buscar;
+
+10. Para quitar el texto buscado, modficar el archivo cabecera.js
+
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import AppContext from '../helpers/appcontext';
+
+class Cabecera extends Component {
+	static contextType = AppContext;
+	state = {
+		busqueda: ""
+	}
+	setBusqueda(e){
+		this.setState({
+			busqueda: e.target.value
+		});
+	}
+	buscar=()=>{
+		let busqueda = this.state.busqueda;
+		let ruta = "/buscar/"+busqueda;
+		this.setState({
+			busqueda: ""
+		});
+		window.location.hash = ruta;
+	}
+	render(){
+		return(
+			<div id="cabecera">
+				<div className="logo"><Link to="/">CodiGoStore</Link></div>
+				<div className="buscador">
+					<input type="text" defaultValue={this.state.busqueda} onChange={this.setBusqueda.bind(this)} placeholder="Busca un producto" />
+					<button onClick={this.buscar.bind(this)}>Buscar</button>
+				</div>
+				<div className="enlaces">
+					<Link to="/login">Iniciar Sesión</Link> 
+					<Link to="/carrito">Carrito ({this.context.carrito.length})</Link>
+				</div>
+			</div>
+		);
+	}
+}
+export default Cabecera;
+  
+  

@@ -1,0 +1,42 @@
+﻿{
+	"productos":[
+		{"id":1,"nombre":"polo con estampado ","precio":15.80,"talla":"small","imagen":"polo1.jpg","stock":100},
+		{"id":2,"nombre":"polo con estampado ","precio":16.00,"talla":"mediano","imagen":"polo2.jpg","stock":200},
+		{"id":3,"nombre":"polo con estampado ","precio":16.80,"talla":"large","imagen":"polo3.jpg","stock":150},
+		{"id":4,"nombre":"viviri de color ","precio":13.00,"talla":"small","imagen":"viviri1.jpg","stock":250},
+		{"id":5,"nombre":"viviri de color ","precio":13.50,"talla":"mediano","imagen":"viviri2.jpg","stock":350},
+		{"id":6,"nombre":"viviri de color ","precio":14.00,"talla":"large","imagen":"viviri3.jpg","stock":50},
+		{"id":7,"nombre":"camisa ","precio":15.00,"talla":"small","imagen":"camisa1.jpg","stock":450},
+		{"id":8,"nombre":"camisa ","precio":16.00,"talla":"mediano","imagen":"camisa2.jpg","stock":490},
+		{"id":9,"nombre":"camisa ","precio":16.50,"talla":"large","imagen":"camisa3.jpg","stock":400},
+		{"id":10,"nombre":"pantalon de vestir","precio":46.00,"talla":"small","imagen":"pantalon1.jpg","stock":300},
+		{"id":11,"nombre":"pantalon de vestir","precio":46.50,"talla":"mediano","imagen":"pantalon2.jpg","stock":100},
+		{"id":12,"nombre":"pantalon de vestir","precio":47.00,"talla":"large","imagen":"pantalon3.jpg","stock":260},
+		{"id":13,"nombre":"pantalon de vestir","precio":60.00,"talla":"small","imagen":"pantalon4.jpg","stock":300},
+		{"id":14,"nombre":"pantalon de vestir","precio":65.50,"talla":"mediano","imagen":"pantalon5.jpg","stock":100},
+		{"id":15,"nombre":"pantalon de vestir","precio":70.00,"talla":"large","imagen":"pantalon6.jpg","stock":260}
+	],
+	"productos_medicos":[
+		{"id":1,"nombre":"mascarilla N95 ","precio":60.00,"talla":"small","imagen":"masn95.jpg","stock":100},
+		{"id":2,"nombre":"mascarilla k95 ","precio":40.00,"talla":"mediano","imagen":"mask95.jpg","stock":200},
+		{"id":3,"nombre":"mascarilla hilos de plata ","precio":65.00,"talla":"small-mediano-large","imagen":"mas3.jpg","stock":100},
+		{"id":4,"nombre":"mascarilla filtros plomos 3M","precio":70.00,"talla":"small-mediano-large","imagen":"mas4.jpg","stock":200},
+		{"id":5,"nombre":"mascarilla filtros blancos super 3M ","precio":100.00,"talla":"mediano","imagen":"mas5.jpg","stock":200},
+		{"id":6,"nombre":"protector facial ","precio":70.00,"talla":"small","imagen":"profa1.jpg","stock":150},
+		{"id":7,"nombre":"protector facial negro ","precio":80.00,"talla":"small-large","imagen":"profa2.jpg","stock":100},
+		{"id":8,"nombre":"protector facial turkesa delicado ","precio":40.00,"talla":"small-mediano","imagen":"profa3.jpg","stock":150},
+		{"id":9,"nombre":"protector facial tupo casco ","precio":70.00,"talla":"small-large","imagen":"profa4.jpg","stock":150},
+		{"id":10,"nombre":"protector facial antigas ","precio":100.00,"talla":"small-medium","imagen":"profa5.jpg","stock":150},
+		{"id":11,"nombre":"protector facial soldador ","precio":120.00,"talla":"small-mediano","imagen":"profa6.jpg","stock":100},
+		{"id":12,"nombre":"impermeable anticovit blanco ","precio":40.00,"talla":"small","imagen":"impant1.jpg","stock":250},
+		{"id":13,"nombre":"impermeable anticovit turkesa ","precio":35.00,"talla":"small-mediano","imagen":"impant2.jpg","stock":350},
+		{"id":14,"nombre":"impermeable anticovit negro ","precio":50.00,"talla":"small-mediano","imagen":"impant3.jpg","stock":250},
+		{"id":5,"nombre":"impermeable anticovit naranja ","precio":55.00,"talla":"mediano","imagen":"impant4.jpg","stock":350},	
+		{"id":6,"nombre":"impermeable anticovit gris","precio":35.00,"talla":"mediano-large","imagen":"impant5.jpg","stock":260}
+	],
+	"usuarios":[
+		{"id":1,"nombre":"Felipe","apellido":"Linares","email":"flinares@mail.com","telefono":"963636363","direccion":"Los Olivos"},
+		{"id":2,"nombre":"Karen","apellido":"García","email":"kgarcia@mail.com","telefono":"945454545","direccion":"Comas"}
+	],
+	"ventas":[]
+}
