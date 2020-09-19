@@ -19,7 +19,7 @@ class Principal extends Component {
 	render(){
 		return(
 			<div id="principal">
-				<h1 >Productos textiles</h1>
+				<h1 >Prendas</h1>
 				<div className="lista">
 				{this.state.lista.map(prod=>{
 					return(<Producto key={prod.id} dato={prod} />);

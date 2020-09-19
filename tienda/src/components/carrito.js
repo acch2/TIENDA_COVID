@@ -54,7 +54,7 @@ class Carrito extends Component {
 									<td>{item.nombre}</td>
 									<td>{item.talla}</td>
 									<td>{item.cantidad}</td>
-									<td>S/ {item.precio.toFixed(2)}</td>
+									<td>S/ {item.precio}</td>
 									<td>S/ {(item.cantidad*item.precio).toFixed(2)}</td>
 									<td><button onClick={this.quitarProducto.bind(this,item.id)}>Eliminar</button></td>
 								</tr>

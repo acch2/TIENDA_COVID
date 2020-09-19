@@ -6,10 +6,13 @@ class Producto extends Component {
 		return(
 			<div className="caja">
 				<Link to={`/producto/detalle/${this.producto.id}`}>
-					<div className="foto"><img src={"/img/"+this.producto.imagen} alt="" /></div>
-					<div className="nombre">{this.producto.nombre}</div>
-					<div className="talla">{this.producto.talla}</div>
-					<div className="precio">S/ {this.producto.precio.toFixed(2)}</div>
+				<div className="foto"><img src={"/img/" + this.producto.imagen} alt="" /></div>
+					<div className="card__info">
+						<div className="nombre">{this.producto.nombre}</div>
+						<div className="talla">{this.producto.talla}</div>
+						<div className="precio">S/ {this.producto.precio.toFixed(2)}</div>
+
+					</div>
 				</Link>
 			</div>
 		);

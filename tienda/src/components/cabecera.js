@@ -23,7 +23,7 @@ class Cabecera extends Component {
 	render(){
 		return(
 			<div id="cabecera">
-				<div className="logo"><Link to="/">TEXTIL & HEALTH</Link></div>
+				<div className="logo"><Link to="/">TIENDA COVID</Link></div>
 				<div className="buscador">
 					<input type="text" defaultValue={this.state.busqueda} onChange={this.setBusqueda.bind(this)} placeholder="Busca un producto" />
 					<button onClick={this.buscar.bind(this)}>Buscar</button>

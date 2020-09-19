@@ -21,7 +21,7 @@ class App extends Component {
   };
   state = {
     carrito: [
-      {}
+      {id:88,nombre:"demo",precio:3,cantidad:10}
     ],
     setCarrito: this.setCarrito
   };
@@ -33,7 +33,8 @@ class App extends Component {
   };
   state2= {
     carrito2: [
-      {}
+      {id:88,nombre:"demo",precio:3,cantidad:1}
+
     ],
     setCarrito2: this.setCarrito2
   };

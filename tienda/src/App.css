@@ -59,20 +59,44 @@ header {
 #principal {
   width: 1100px;
   margin: 0 auto;
-  background-color: #7c8185;
+  /* background-color: #7c8185; */
+  background-color: #fff;
   padding: 20px;
 }
+
+.lista {
+  display: flex;
+  flex-wrap: wrap;
+}
 .caja {
+  background-color: white;
   display: inline-block;
   width: calc(20% - 30px);
   border: 1px solid #eee;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  background-color: #FFF;
+  margin: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px #aaa;
+  overflow: hidden;
+  cursor: pointer;
+
   padding: 10px;
   font-weight: bold;
   text-align: center;
+  height: 300px;
 }
+
+.foto{
+  height: 70%;
+  overflow: hidden;
+  
+}
+
+.card__info{
+  height: 30%;
+
+}
+
+
 .lista .caja:nth-child(5n) {
   margin-right: 0;
 }
@@ -95,6 +119,27 @@ header {
   color: #ea2840;
 }
 
+/* Aqui aplico el hover */
+.caja:hover .foto{
+  height: 80%;
+  padding: 0;
+}
+.caja:hover .card__info{
+  height: 20%;
+}
+
+.caja:hover .nombre{
+  display: none;
+}
+
+.caja:hover {
+  box-shadow: #ddd 0 0 10px;
+  transform: scale(1.05);
+}
+
+.caja, .caja * {
+  transition: all 0.3s ease-in;
+}
 
 .ruta {
  background-color: #eee;
@@ -215,8 +260,30 @@ footer {
   font-weight: 600;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
   #cabecera {
     width: 100%;
   }
+} */
+
+@media screen and (max-width: 768px){
+  body{
+  }
+
+
+  #principal, #producto_detalle, #login ,#noencontrado, #carrito {
+    background-color: #f7f7f7;
+    padding: 10px;
+  }
+
+  #principal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .lista{
+    display: flex;
+    flex-wrap: wrap;
+  }
+
 }
